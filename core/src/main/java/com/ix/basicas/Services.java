@@ -1,7 +1,5 @@
 package com.ix.basicas;
 
-
-import com.ix.interfaces.IAplicacion;
 import com.ix.interfaces.IRepository;
 import com.ix.interfaces.IServices;
 
@@ -10,15 +8,15 @@ import com.ix.interfaces.IServices;
 */
 public class Services<T> implements IServices{
 	
-	protected IAplicacion aplicacion;
+	protected Aplicacion aplicacion;
 	protected IRepository repository;
 	
-	public Services(IAplicacion aplicacion, IRepository repository) {		
+	public Services(Aplicacion aplicacion, IRepository repository) {		
 		this.aplicacion=aplicacion;
 		this.repository=repository;
 	}	
 	
-	public Services(IAplicacion aplicacion) {		
+	public Services(Aplicacion aplicacion) {		
 		this.aplicacion=aplicacion;
 	}	
 	

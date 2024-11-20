@@ -4,7 +4,6 @@ import java.sql.CallableStatement;
 import java.sql.SQLException;
 import java.util.List;
 
-import com.ix.interfaces.IRepository;
 import com.ix.utilidades.Constantes;
 import com.ix.utilidades.Excepciones;
 
@@ -12,31 +11,29 @@ import com.ix.utilidades.Excepciones;
 @author
 */
 
-public abstract class Repository<T> implements IRepository{	
+public class AuxiliarRepository<T> {	
 	
-	protected String sqlLista;
-	protected String sqlConsultar;
-	protected String sqlEjecutar;
-
-	public T obtenerObjeto(List<T> lst) {			
+	public T obtenerEntidad(List<T> lst) {			
 		T t= null;		
 		t= lst.get(0);	
 		return t;
 	}	
 	
-	public T consultar(Class<? extends Object> clase,List<Object> parametrosBD,	 		
+	public T obtenerObjeto(Class<? extends Object> clase,
+			String sql,
+			List<Object> parametrosBD,	 		
 	 		BaseDatos basedatos) throws Excepciones{
 		List<T> lst=lista(clase,
-				sqlConsultar, 
+				sql, 
 				parametrosBD,
 				basedatos);	
 		
 		
 		System.out.println("lst " +lst.size());
-		return 	obtenerObjeto(lst);
+		return 	obtenerEntidad(lst);
 	}
 	
-	public <D> List<D> consultar(Class<? extends Object> clase,
+	public <D> List<D> listaEntidades(Class<? extends Object> clase,
 	 		String sql,
 	 		List<Object> parametrosBD,
 	 		BaseDatos baseDatos) throws Excepciones{
@@ -53,23 +50,7 @@ public abstract class Repository<T> implements IRepository{
 
 		return lst;		
 	}
-			
-	public List<T> lista(Class<? extends Object> clase,
-	 		List<Object> parametrosBD,
-	 		BaseDatos baseDatos) throws Excepciones{
-
-		return this.lista(clase,this.sqlLista, 
-				parametrosBD,baseDatos);	
-		
-	}	
 	
-	public List<T> lista(Class<? extends Object> clase,	 		
-	 		BaseDatos baseDatos) throws Excepciones{
-
-		return this.lista(clase,this.sqlLista, 
-				baseDatos);		
-	}
-
 	public List<T> lista(Class<? extends Object> clase,
 	 		String sql,
 	 		List<Object> parametrosBD,

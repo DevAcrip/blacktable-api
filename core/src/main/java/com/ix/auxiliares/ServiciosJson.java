@@ -1,6 +1,7 @@
 package com.ix.auxiliares;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -63,7 +64,7 @@ public class ServiciosJson {
 		return r;		
 	}
 
-	public static Map<String, Object> jsonToMap(String json) {
+	public static Map<String, Object> toMap(String json) {
 		Map<String, Object> resultado= new LinkedHashMap<String, Object>();
 		
 		try {
@@ -75,5 +76,15 @@ public class ServiciosJson {
 		}
 		return resultado;
 	}
+		
+	public static <T> List<T> toList(String json, Class<T> tipo) {
+        List<T> listaDtos = new ArrayList<>();
+        try {
+            listaDtos = objectMapper.readValue(json, objectMapper.getTypeFactory().constructCollectionType(List.class, tipo));
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return listaDtos;
+    }
 	
 }

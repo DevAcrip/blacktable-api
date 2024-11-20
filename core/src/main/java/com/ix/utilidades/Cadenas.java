@@ -13,5 +13,8 @@ public class Cadenas {
 	public static String unir(String separador, String... cadenas) {
 			return Stream.of(cadenas).filter(value -> value !=null).collect(Collectors.joining(separador));
 		}
-
+	
+	public static boolean esValida(String valor) {
+		return valor!=null && !valor.isBlank();		
+	}	
 }

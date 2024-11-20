@@ -3,12 +3,11 @@ package com.ix.basicas;
 import com.ix.bd.BaseDatos;
 import com.ix.bd.ConexionContext;
 import com.ix.bd.ParametrosConexion;
+import com.ix.interfaces.IAplicacion;
 
 import jakarta.servlet.ServletContext;
 
-import static com.ix.auxiliares.ServiciosJson.toJson;
-
-public class Aplicacion {
+public class Aplicacion implements IAplicacion {
 	
 	private ServletContext context;
 	
