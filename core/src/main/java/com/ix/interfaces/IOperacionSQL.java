@@ -6,6 +6,6 @@ import java.sql.SQLException;
 @FunctionalInterface
 public interface IOperacionSQL<T>{
 		
-	int ejecutar(T t,CallableStatement cs) throws SQLException;		
+	int ejecutar(T t, CallableStatement cs) throws SQLException;
 	
 }

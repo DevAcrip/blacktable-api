@@ -13,6 +13,6 @@ public interface IRepository <T>{
 	public int eliminar(T dto, BaseDatos baseDatos) throws Excepciones, SQLException;
 	
 	public List<T> lista(List<Object> parametrosBD,
-	 		BaseDatos baseDatos) throws Excepciones;
+                         BaseDatos baseDatos) throws Excepciones;
 
 }
