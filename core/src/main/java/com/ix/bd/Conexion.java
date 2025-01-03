@@ -1,12 +1,14 @@
 package com.ix.bd;
 
+import com.ix.interfaces.IConexion;
+
 import java.sql.Connection;
 
 /**
 @author
 */
 
-public abstract class Conexion {
+public abstract class Conexion implements IConexion {
 	
 	protected ParametrosConexion parametrosConexion;		
 	

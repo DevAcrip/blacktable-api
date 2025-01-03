@@ -14,6 +14,7 @@
         <module name="general" />
         <module name="core" />
         <module name="presupuesto" />
+        <module name="planeacionPresupuesto" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

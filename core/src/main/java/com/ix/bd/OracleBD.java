@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import com.ix.interfaces.IConexion;
 import com.ix.interfaces.IOperacionSQL;
 import com.ix.utilidades.Excepciones;
 
@@ -27,7 +28,12 @@ public class OracleBD extends BaseDatos {
 	public OracleBD() {
 		super();
 	}
-	
+
+	@Override
+	public void setConexion(IConexion conexion) {
+		this.conexion=conexion;
+	}
+
 	@Override
 	public Result datos(String sql) throws SQLException{
 		Result resultado=null;

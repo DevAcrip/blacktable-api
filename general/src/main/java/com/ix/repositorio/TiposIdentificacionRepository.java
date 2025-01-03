@@ -1,108 +1,63 @@
 package com.ix.repositorio;
 
-
-import java.sql.CallableStatement;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 
 import com.ix.bd.BaseDatos;
-import com.ix.bd.AuxiliarRepository;
 import com.ix.dto.TiposIdentificacionDto;
-import com.ix.entidades.TiposIdentificacion;
-import com.ix.interfaces.IOperacionSQL;
-import com.ix.interfaces.IRepository;
-import com.ix.sql.TIPOSIDENTIFICACION;
+import com.ix.implementacion.BaseRepository;
+import com.ix.interfaces.IBaseDatos;
 import com.ix.utilidades.Excepciones;
-import static com.ix.auxiliares.ServiciosMapear.*;
 
-public class TiposIdentificacionRepository implements IRepository<TiposIdentificacionDto>{   
+public class TiposIdentificacionRepository extends BaseRepository<TiposIdentificacionDto> {
 
-	private IOperacionSQL<TiposIdentificacionDto> crear= (TiposIdentificacionDto d,CallableStatement cs) ->{
-		int resultado=0;
-		List<Object> parametros= new ArrayList<Object>();
-		
-		AuxiliarRepository<TiposIdentificacion> repositorio = new AuxiliarRepository<TiposIdentificacion>();			
-		resultado=repositorio.ejecutar(cs,parametros);
-		d.setId(resultado); 
-		
-		System.out.println("Creando TiposIdentificacion " + d.getId());
-		
-		return resultado;
-	};
+	private static final String CREAR = "INSERT INTO tipos_identificacion (id, nombre, estado) VALUES (?, ?, ?)";
+	private static final String EDITAR = "UPDATE tipos_identificacion SET nombre = ?, estado = ? WHERE id = ?";
+	private static final String ELIMINAR = "DELETE FROM tipos_identificacion WHERE id = ?";
+	private static final String CONSULTAR = "SELECT * FROM tipos_identificacion";
 
-	private IOperacionSQL<TiposIdentificacionDto> editar= (TiposIdentificacionDto d,CallableStatement cs) ->{
-		int resultado=0;
-		List<Object> parametros= new ArrayList<Object>();
-			
-		AuxiliarRepository<TiposIdentificacion> repositorio = new AuxiliarRepository<TiposIdentificacion>();			
-		resultado=repositorio.ejecutar(cs,parametros);
-	
-		System.out.println("Editando TiposIdentificacion " + d.getId());
-		
-		return resultado;
-	};
+	public TiposIdentificacionRepository() {
+		sqlCrear = CREAR;
+		sqlEditar = EDITAR;
+		sqlElimimar = ELIMINAR;
+		sqlConsultar = CONSULTAR;
 
-	private IOperacionSQL<TiposIdentificacionDto> eliminar= (TiposIdentificacionDto d,CallableStatement cs) ->{
-		int resultado=0;
-		List<Object> parametros= new ArrayList<Object>();
+		setPropiedadesAParametros((d, parametros) -> {
+			parametros.add(d.getId());
+			parametros.add(d.getNombre());
+			parametros.add(d.getEstado());
+		});
+	}
 
-		parametros.add(d.getPrincipal());		
-		parametros.add(d.getId());
-			
-		AuxiliarRepository<TiposIdentificacion> repositorio = new AuxiliarRepository<TiposIdentificacion>();			
-		resultado=repositorio.ejecutar(cs,parametros);
-	
-		System.out.println("Eliminando TiposIdentificacion " + d.getId());
-		
-		return resultado;
-	};
+	public int crear(TiposIdentificacionDto dto, IBaseDatos baseDatos) throws Excepciones, SQLException {
+		setPropiedadesAParametros((d, parametros) -> {
+			parametros.add(d.getId());
+			parametros.add(d.getNombre());
+			parametros.add(d.getEstado());
+		});
+		return super.crear(dto, baseDatos);
+	}
 
-	@Override
-	public int crear(TiposIdentificacionDto dto, BaseDatos baseDatos) throws Excepciones, SQLException {
-		int resultado=0;
-		Map<String,IOperacionSQL<TiposIdentificacionDto>> lstOperacionesSQL = new LinkedHashMap<>();
+	public int editar(TiposIdentificacionDto dto, IBaseDatos baseDatos) throws Excepciones, SQLException {
+		setPropiedadesAParametros((d, parametros) -> {
+			parametros.add(d.getNombre());
+			parametros.add(d.getEstado());
+			parametros.add(d.getId());
+		});
+		return super.editar(dto, baseDatos);
+	}
 
-		lstOperacionesSQL.put(TIPOSIDENTIFICACION.CREAR,crear);
-		
-		resultado=baseDatos.ejecutarSQL(dto,lstOperacionesSQL);
-		
-		return dto.getId();
-	}	
-	
-	@Override
-	public int editar(TiposIdentificacionDto dto, BaseDatos baseDatos) throws Excepciones, SQLException {
-		int resultado=0;
-		Map<String,IOperacionSQL<TiposIdentificacionDto>> lstOperacionesSQL = new LinkedHashMap<>();
-		
-		lstOperacionesSQL.put(TIPOSIDENTIFICACION.EDITAR,editar);
-		
-		resultado=baseDatos.ejecutarSQL(dto,lstOperacionesSQL);
-		
-		return resultado;
-	}	
-
-	@Override
-	public int eliminar(TiposIdentificacionDto dto, BaseDatos baseDatos) throws Excepciones, SQLException {
-		int resultado=0;
-		Map<String,IOperacionSQL<TiposIdentificacionDto>> lstOperacionesSQL = new LinkedHashMap<>();
-		
-		lstOperacionesSQL.put(TIPOSIDENTIFICACION.ELIMINAR,eliminar);
-		
-		resultado=baseDatos.ejecutarSQL(dto,lstOperacionesSQL);
-		
-		return resultado;
+	public int eliminar(TiposIdentificacionDto dto, IBaseDatos baseDatos) throws Excepciones, SQLException {
+		setPropiedadesAParametros((d, parametros) -> {
+			parametros.add(d.getId());
+		});
+		return super.eliminar(dto, baseDatos);
 	}
 
 	@Override
-	public List<TiposIdentificacionDto> lista( List<Object> parametrosBD,
-			BaseDatos baseDatos) throws Excepciones {
-		
-			AuxiliarRepository<TiposIdentificacion> repositorio = new AuxiliarRepository<TiposIdentificacion>();
-			List<TiposIdentificacion> lst =repositorio.lista(TiposIdentificacion.class,TIPOSIDENTIFICACION.LISTA, parametrosBD, baseDatos);
-			return mapearLista(lst);
-	}	
+	public <M> List<M> lista(Class<M> clazz, List<Object> parametros, IBaseDatos baseDatos)
+			throws Excepciones {
+		return super.lista(clazz, parametros, baseDatos);
+	}
 
 }

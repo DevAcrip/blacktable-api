@@ -4,6 +4,8 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
+import com.ix.interfaces.IBaseDatos;
+import com.ix.interfaces.IConexion;
 import com.ix.interfaces.IOperacionSQL;
 import com.ix.utilidades.Excepciones;
 
@@ -13,11 +15,11 @@ import jakarta.servlet.jsp.jstl.sql.Result;
 @author
 */
 
-public abstract class BaseDatos {
+public abstract class BaseDatos implements IBaseDatos {
 	
-	protected Conexion conexion;
+	protected IConexion conexion;
 	
-	public Conexion getConexion() {
+	public IConexion getConexion() {
 		return conexion;
 	}
 

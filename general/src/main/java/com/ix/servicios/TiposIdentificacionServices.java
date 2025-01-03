@@ -7,20 +7,21 @@ import com.ix.basicas.Aplicacion;
 import com.ix.basicas.Services;
 import com.ix.dto.TiposIdentificacionDto;
 import com.ix.interfaces.IRepository;
+import com.ix.interfaces.IAplicacion;
 import com.ix.utilidades.Constantes;
 import com.ix.utilidades.Excepciones;
 import com.ix.utilidades.Resultado;
 
 public class TiposIdentificacionServices extends Services<TiposIdentificacionDto>{
 
-	public TiposIdentificacionServices(Aplicacion aplicacion, IRepository<TiposIdentificacionDto> repository) {
+	public TiposIdentificacionServices(IAplicacion aplicacion, IRepository<TiposIdentificacionDto> repository) {
 		super(aplicacion, repository);
-		// TODO Auto-generated constructor stub
 	}
 
 	@SuppressWarnings("unchecked")
 	public List<TiposIdentificacionDto> lista() throws Excepciones {
-		List<TiposIdentificacionDto> lst = repository.lista(List.of("S"),aplicacion.getBaseDatos());	
+		List<TiposIdentificacionDto> lst = repository.lista(TiposIdentificacionDto.class,
+				List.of("S"),aplicacion.getBaseDatos());
 		
 		return lst; 			
 	}
@@ -28,7 +29,8 @@ public class TiposIdentificacionServices extends Services<TiposIdentificacionDto
 	@SuppressWarnings("unchecked")
 	public TiposIdentificacionDto obtenerEntidad(int id) throws Excepciones{
 
-		List<TiposIdentificacionDto> lst = repository.lista(List.of(id),aplicacion.getBaseDatos());		
+		List<TiposIdentificacionDto> lst = repository.lista(TiposIdentificacionDto.class,
+				List.of(id),aplicacion.getBaseDatos());
 		TiposIdentificacionDto resultado=lst.get(0);		 
 		return resultado;
 	}	

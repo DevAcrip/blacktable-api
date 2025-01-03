@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/blacktable-api.iml" filepath="$PROJECT_DIR$/.idea/blacktable-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/general/general.iml" filepath="$PROJECT_DIR$/general/general.iml" />
     </modules>
   </component>
 </project>

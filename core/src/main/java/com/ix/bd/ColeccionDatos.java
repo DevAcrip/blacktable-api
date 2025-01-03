@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.SortedMap;
 
+import com.ix.interfaces.IBaseDatos;
 import jakarta.servlet.jsp.jstl.sql.Result;
 
 /**
@@ -35,7 +36,7 @@ public class ColeccionDatos<T> {
 	}	
 	
 	public List<T>  listaObjetos(Class<? extends Object> clase,String sql,
-			BaseDatos basedatos){
+			IBaseDatos basedatos){
 		List<T> coleccion= null;		
 		
 			try {				
@@ -52,7 +53,7 @@ public class ColeccionDatos<T> {
 	 public List<T>  listaObjetos(Class<? extends Object> clase,
 			 		String sql,
 			 		List<Object> parametros,
-			 		BaseDatos basedatos){
+					IBaseDatos basedatos){
 		 
 		List<T> coleccion=null;		
 
@@ -68,7 +69,7 @@ public class ColeccionDatos<T> {
 			return coleccion;
 		}
 		
-	public Map<String, Integer> mapDatos(String sql,List<Object> parametros,BaseDatos basedatos){
+	public Map<String, Integer> mapDatos(String sql, List<Object> parametros, IBaseDatos basedatos){
 		
 		Map<String, Integer> coleccion =null;
 		try {

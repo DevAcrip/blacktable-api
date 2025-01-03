@@ -9,7 +9,6 @@ import org.modelmapper.TypeToken;
 /**
 @author
 Juan Carlos Oidor González
-Juan Felipe Jimenez Lozada
 10 abr. 2024
 */
 public class ServiciosMapear {

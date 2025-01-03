@@ -5,6 +5,7 @@ import com.ix.bd.ConexionContext;
 import com.ix.bd.ParametrosConexion;
 import com.ix.interfaces.IAplicacion;
 
+import com.ix.interfaces.IBaseDatos;
 import jakarta.servlet.ServletContext;
 
 public class Aplicacion implements IAplicacion {
@@ -12,39 +13,33 @@ public class Aplicacion implements IAplicacion {
 	private ServletContext context;
 	
 	private String cadenaConexion;
-	private BaseDatos baseDatos;
+	private IBaseDatos baseDatos;
 	private Integer id;
+
+	private IAplicacion aplicacion;
 	
-	
-	private static Aplicacion aplicacion;
-	
-	public static Aplicacion getAplicacion(BaseDatos bd,ServletContext context) {
-		
-		aplicacion = aplicacion!=null?aplicacion:new Aplicacion();	
+	public IAplicacion getAplicacion(IBaseDatos bd, ServletContext context) {
+		aplicacion = aplicacion!=null?aplicacion:new Aplicacion();
 		aplicacion.setContext(context);
-		
+
 		aplicacion.setCadenaConexion(context.getInitParameter("POOLCX"));
-		
+
 		aplicacion.setId(Integer.parseInt(context.getInitParameter("IDAPLICACION")));
-		
+
 		System.out.print("aplicacion.setId " +aplicacion.getId());
-		
-		bd.setConexion(new ConexionContext(	new ParametrosConexion(			
-								aplicacion.getCadenaConexion())
-								));
+
+		bd.setConexion(new ConexionContext(	new ParametrosConexion(
+				aplicacion.getCadenaConexion())
+		));
 		aplicacion.setBaseDatos(bd);
-		
-		return aplicacion;			
+
+		return aplicacion;
 	}
-	
-	public static Aplicacion getAplicacion() {
+
+	public IAplicacion getAplicacion() {
 
 		return aplicacion!=null?aplicacion:new Aplicacion();		
 	}	
-	
-	private Aplicacion() {
-		super();
-	}
 	
 	/**
 	 * @return the context
@@ -77,14 +72,15 @@ public class Aplicacion implements IAplicacion {
 	/**
 	 * @return the baseDatos
 	 */
-	public BaseDatos getBaseDatos() {
+	public IBaseDatos getBaseDatos() {
 		return baseDatos;
 	}
+
 
 	/**
 	 * @param baseDatos the baseDatos to set
 	 */
-	public void setBaseDatos(BaseDatos baseDatos) {
+	public void setBaseDatos(IBaseDatos baseDatos) {
 		this.baseDatos = baseDatos;
 	}
 

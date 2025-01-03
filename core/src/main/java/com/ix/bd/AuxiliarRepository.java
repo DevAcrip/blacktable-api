@@ -4,6 +4,7 @@ import java.sql.CallableStatement;
 import java.sql.SQLException;
 import java.util.List;
 
+import com.ix.interfaces.IBaseDatos;
 import com.ix.utilidades.Constantes;
 import com.ix.utilidades.Excepciones;
 
@@ -22,7 +23,7 @@ public class AuxiliarRepository<T> {
 	public T obtenerObjeto(Class<? extends Object> clase,
 			String sql,
 			List<Object> parametrosBD,	 		
-	 		BaseDatos basedatos) throws Excepciones{
+	 		IBaseDatos basedatos) throws Excepciones{
 		List<T> lst=lista(clase,
 				sql, 
 				parametrosBD,
@@ -36,7 +37,7 @@ public class AuxiliarRepository<T> {
 	public <D> List<D> listaEntidades(Class<? extends Object> clase,
 	 		String sql,
 	 		List<Object> parametrosBD,
-	 		BaseDatos baseDatos) throws Excepciones{
+	 		IBaseDatos baseDatos) throws Excepciones{
 		
 		List<D> lst= null;
 		System.out.println("sql "+sql);
@@ -54,7 +55,7 @@ public class AuxiliarRepository<T> {
 	public List<T> lista(Class<? extends Object> clase,
 	 		String sql,
 	 		List<Object> parametrosBD,
-	 		BaseDatos baseDatos) throws Excepciones{
+	 		IBaseDatos baseDatos) throws Excepciones{
 		
 		List<T> lst= null;
 		System.out.println("sql "+sql);
@@ -71,7 +72,7 @@ public class AuxiliarRepository<T> {
 	
 	public List<T> lista(Class<? extends Object> clase,
 	 		String sql,
-	 		BaseDatos baseDatos) throws Excepciones{
+	 		IBaseDatos baseDatos) throws Excepciones{
 		
 		List<T> lst= null;
 		
