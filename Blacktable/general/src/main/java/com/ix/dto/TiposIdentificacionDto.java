@@ -2,7 +2,7 @@ package com.ix.dto;
 
 import com.ix.basicas.Dto;
 
-public class TiposIdentificacionDto extends Dto{
+public class TiposIdentificacionDto extends Dto {
 
     private String nombre;
     private String estado;
