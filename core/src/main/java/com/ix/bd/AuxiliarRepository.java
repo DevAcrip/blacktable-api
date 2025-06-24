@@ -14,7 +14,7 @@ import com.ix.utilidades.Excepciones;
 
 public class AuxiliarRepository<T> {	
 	
-	public T obtenerEntidad(List<T> lst) {			
+	/*public T obtenerEntidad(List<T> lst) {			
 		T t= null;		
 		t= lst.get(0);	
 		return t;
@@ -98,6 +98,6 @@ public class AuxiliarRepository<T> {
          int resultado = cs.getInt(1);	
          cs.clearParameters();
          return resultado;
-	}
+	}*/
 	
 }

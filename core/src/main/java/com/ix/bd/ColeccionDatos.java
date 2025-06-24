@@ -17,7 +17,7 @@ import jakarta.servlet.jsp.jstl.sql.Result;
 
 public class ColeccionDatos<T> {
 	
-	@SuppressWarnings("unchecked")
+	/*@SuppressWarnings("unchecked")
 	private void datosAColeccion(Class<? extends Object> clase, List<T> coleccion, Result rs)
 			throws InstantiationException, IllegalAccessException, InvocationTargetException, NoSuchMethodException {
 		
@@ -88,6 +88,6 @@ public class ColeccionDatos<T> {
 				e.printStackTrace();
 	    	}
 	    return coleccion;	
-	  }	
+	  }	*/
 
 }

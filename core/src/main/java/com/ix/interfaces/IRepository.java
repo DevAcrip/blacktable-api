@@ -1,6 +1,5 @@
 package com.ix.interfaces;
 
-import com.ix.bd.BaseDatos;
 import com.ix.utilidades.Excepciones;
 
 import java.sql.SQLException;

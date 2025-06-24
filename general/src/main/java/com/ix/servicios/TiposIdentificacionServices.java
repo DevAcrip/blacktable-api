@@ -3,9 +3,9 @@ package com.ix.servicios;
 import java.sql.SQLException;
 import java.util.List;
 
-import com.ix.basicas.Aplicacion;
-import com.ix.basicas.Services;
 import com.ix.dto.TiposIdentificacionDto;
+import com.ix.implementacion.Aplicacion;
+import com.ix.implementacion.Services;
 import com.ix.interfaces.IRepository;
 import com.ix.interfaces.IAplicacion;
 import com.ix.utilidades.Constantes;

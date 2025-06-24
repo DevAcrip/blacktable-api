@@ -1,18 +1,9 @@
 package com.ix.interfaces;
 
-import com.ix.bd.ParametrosConexion;
-
 import java.sql.Connection;
 
+import java.sql.SQLException;
+
 public interface IConexion {
-
-    void conectar();
-
-    void desconectar();
-
-    Connection getConnection();
-
-    void setConnection(Connection connection);
-
-    ParametrosConexion getParametrosConexion();
+    Connection obtenerConexion() throws SQLException;
 }

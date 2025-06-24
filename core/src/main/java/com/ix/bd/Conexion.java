@@ -1,46 +1,32 @@
 package com.ix.bd;
 
+import jakarta.enterprise.context.Dependent;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
+
 import com.ix.interfaces.IConexion;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 
-/**
-@author
-*/
+@Dependent
+public class Conexion implements IConexion {
 
-public abstract class Conexion implements IConexion {
-	
-	protected ParametrosConexion parametrosConexion;		
-	
-	public Conexion(ParametrosConexion parametrosConexion) {
-		this.parametrosConexion = parametrosConexion;		
-	}
-	
-	protected Connection connection;
-		
-	public abstract void conectar();
-		
-	public void desconectar(){
-    	try {
-			if(connection!=null) 
-				{
-					connection.close();
-				}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}    	
-    }    
-	
-	public Connection getConnection() {
-		return connection;
-	}
-	
-	public void setConnection(Connection cx) {
-		this.connection = cx;
-	}
-	
-	public ParametrosConexion getParametrosConexion() {
-		return parametrosConexion;
-	}
-		
+    private final String jndiDataSource;
+
+    public Conexion(String jndiDataSource) {
+        this.jndiDataSource = jndiDataSource;
+    }
+
+    @Override
+    public Connection obtenerConexion() throws SQLException {
+        try {
+            InitialContext ctx = new InitialContext();
+            DataSource ds = (DataSource) ctx.lookup(jndiDataSource);
+            return ds.getConnection();
+        } catch (NamingException e) {
+            throw new SQLException("No se pudo obtener el DataSource desde JNDI: " + jndiDataSource, e);
+        }
+    }
 }
