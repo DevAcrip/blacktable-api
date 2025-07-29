@@ -2,7 +2,6 @@ package com.ix.bd;
 
 import com.ix.interfaces.IValorPropiedad;
 import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 import java.util.stream.Stream;
 

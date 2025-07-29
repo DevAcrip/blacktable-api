@@ -3,6 +3,7 @@ package com.ix.implementacion;
 
 import com.ix.bd.ColeccionDatosUtils;
 import com.ix.interfaces.IBaseDatos;
+import com.ix.interfaces.ICrudRepository;
 import com.ix.utilidades.Excepciones;
 
 import jakarta.inject.Inject;
@@ -10,7 +11,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-public abstract class CrudRepository<T> {
+public abstract class CrudRepository<T> implements ICrudRepository<T> {
 
     private final IBaseDatos baseDatos;
 
