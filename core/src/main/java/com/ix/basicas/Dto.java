@@ -8,7 +8,7 @@ public class Dto {
 	private int id;
 	private String nombrePrincipal;
 	private int principal;
-	private int rol;
+	private int rol;	
 	private String ip;
 	public int getId() {
 		return id;
